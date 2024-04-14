@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gehaltsrechner für Callcenter Agents</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <h1>Gehaltsrechner</h1>
+        <label for="baseSalary">Grundgehalt (€ pro Stunde):</label>
+        <input type="number" id="baseSalary" value="12.41">
+
+        <fieldset>
+            <legend>Stundeninformationen:</legend>
+            <label><input type="radio" name="hoursCalculation" value="daily" checked>Stunden pro Tag + Tage</label>
+            <label><input type="radio" name="hoursCalculation" value="monthly">Stunden im Monat</label>
+        </fieldset>
+
+        <div id="dailyInputs">
+            <label for="workingDays">Gearbeitete Tage:</label>
+            <input type="number" id="workingDays">
+
+            <label for="hoursPerDay">Stunden pro Tag:</label>
+            <input type="number" id="hoursPerDay" step="0.01">
+
+            <fieldset id="hourAdjustmentFieldset">
+                <legend>Plus-/Minusstunden:</legend>
+                <label><input type="radio" name="hourAdjustment" value="plus" checked>Plusstunden</label>
+                <label><input type="radio" name="hourAdjustment" value="minus">Minusstunden</label>
+
+                <label for="adjustmentHours">Anpassungsstunden:</label>
+                <input type="number" id="adjustmentHours" value="0" step="0.01">
+            </fieldset>
+        </div>
+
+        <div id="monthlyInputs" style="display: none;">
+            <label for="totalMonthlyHours">Stunden im Monat:</label>
+            <input type="number" id="totalMonthlyHours" step="0.01">
+        </div>
+
+        <fieldset>
+            <legend>Takes Berechnung:</legend>
+            <label><input type="radio" name="takesCalculation" value="average" checked>Durchschnitt der Takes pro Tag</label>
+            <label><input type="radio" name="takesCalculation" value="total">Gesamtzahl der Takes pro Monat</label>
+        </fieldset>
+
+        <label for="takes">Takes:</label>
+        <input type="number" id="takes" step="0.01">
+
+        <label for="commissionPerTake">Provision pro Take (€):</label>
+        <input type="number" id="commissionPerTake">
+
+        <label for="cancellationRate">Stornoquote (%):</label>
+        <input type="number" id="cancellationRate" value="0">
+
+        <button onclick="calculateSalary()">Berechne Gehalt</button>
+        <button onclick="copySalary()">Kopiere Brutto Gehalt</button>
+        <button onclick="openLink()">Öffne Brutto-Netto Rechner</button>
+
+        <h2>Brutto Gehalt: <span id="result">0</span> €</h2>
+        <h3>Grundgehalt: <span id="basePayOutput">0</span> €</h3>
+        <h3>Gesamtprovision: <span id="commissionOutput">0</span> €</h3>
+        <h3>Provision pro Tag: <span id="averageCommissionPerDay">0</span> €</h3>
+        <h3>Provision pro Stunde: <span id="averageCommissionPerHour">0</span> €</h3>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
